@@ -11,7 +11,7 @@ function App() {
           <img className="float-left" src={logo} alt="logo" />
           <div className="float-right center padding-10">
             <p className="title-text align-left">TODO</p>
-            <p className="sub-title-text align-left">A Simple MangoDB CRUD Demo</p>
+            <p className="sub-title-text align-left">A Simple FerretDB CRUD Demo</p>
           </div>
           <div style={{clear: "both"}} />
         </div>

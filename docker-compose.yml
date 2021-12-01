@@ -25,16 +25,16 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB=mangodb
-  mangodb:
-    image: ghcr.io/mangodb-io/mangodb:latest
-    hostname: 'mangodb'
-    container_name: 'mangodb'
+      - POSTGRES_DB=ferretdb
+  ferretdb:
+    image: ghcr.io/ferretdb/ferretdb:latest
+    hostname: 'ferretdb'
+    container_name: 'ferretdb'
     restart: 'on-failure'
     command:
       [
         '-listen-addr=:27017',
-        '-postgresql-url=postgres://postgres@postgres:5432/mangodb',
+        '-postgresql-url=postgres://postgres@postgres:5432/ferretdb',
       ]
     ports:
       - 27017:27017
@@ -45,4 +45,4 @@ services:
     restart: 'on-failure'
     depends_on:
       - 'postgres'
-    entrypoint: ["sh", "-c", "psql -h postgres -U postgres -d mangodb -c 'CREATE SCHEMA IF NOT EXISTS todo'"]
+    entrypoint: ["sh", "-c", "psql -h postgres -U postgres -d ferretdb -c 'CREATE SCHEMA IF NOT EXISTS todo'"]

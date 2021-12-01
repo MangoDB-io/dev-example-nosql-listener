@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const connectionUrl = 'mongodb://mangodb:27017/mangodb';
+const connectionUrl = 'mongodb://ferretdb:27017/ferretdb';
 
 let db;
 
