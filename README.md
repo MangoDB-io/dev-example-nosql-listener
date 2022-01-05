@@ -11,7 +11,7 @@ $ cd example
 
 $ docker-compose pull
 
-$ docker-compose up -d
+$ docker-compose up
 ```
 
 Note: if you are updating from the previous version, run:
