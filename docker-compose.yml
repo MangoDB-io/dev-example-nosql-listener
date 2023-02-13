@@ -18,31 +18,21 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
   postgres:
-    image: postgres:14.0
+    image: postgres:15
     hostname: 'postgres'
     container_name: 'postgres'
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ferretdb
   ferretdb:
     image: ghcr.io/ferretdb/ferretdb:latest
     hostname: 'ferretdb'
     container_name: 'ferretdb'
     restart: 'on-failure'
-    command:
-      [
-        '-listen-addr=:27017',
-        '-postgresql-url=postgres://postgres@postgres:5432/ferretdb',
-      ]
     ports:
       - 27017:27017
-  setup:
-    image: postgres:14.0
-    hostname: 'setup'
-    container_name: 'setup'
-    restart: 'on-failure'
-    depends_on:
-      - 'postgres'
-    entrypoint: ["sh", "-c", "psql -h postgres -U postgres -d ferretdb -c 'CREATE SCHEMA IF NOT EXISTS todo'"]
+    environment:
+      - FERRETDB_POSTGRESQL_URL=postgres://postgres:5432/ferretdb

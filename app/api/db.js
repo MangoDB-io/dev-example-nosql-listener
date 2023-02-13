@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const connectionUrl = 'mongodb://ferretdb:27017/ferretdb';
+const connectionUrl = 'mongodb://username:password@ferretdb:27017/ferretdb?authMechanism=PLAIN';
 
 let db;
 
