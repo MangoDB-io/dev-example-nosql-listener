@@ -1,37 +1,30 @@
-version: "3"
+---
 services:
-  client:
+  todo_client:
     build: ./app/client
-    hostname: 'todo_client'
-    container_name: 'todo_client'
     stdin_open: true
-  api:
+
+  todo_api:
     build: ./app/api
-    hostname: 'todo_api'
-    container_name: 'todo_api'
+
   nginx:
     image: nginx
-    hostname: 'nginx'
-    container_name: 'nginx'
     ports:
       - 8888:8888
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
   postgres:
-    image: postgres:15
-    hostname: 'postgres'
-    container_name: 'postgres'
-    ports:
-      - 5432:5432
+    image: postgres
     environment:
       - POSTGRES_USER=username
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ferretdb
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
   ferretdb:
-    image: ghcr.io/ferretdb/ferretdb:latest
-    hostname: 'ferretdb'
-    container_name: 'ferretdb'
-    restart: 'on-failure'
+    image: ghcr.io/ferretdb/ferretdb
     ports:
       - 27017:27017
     environment:
