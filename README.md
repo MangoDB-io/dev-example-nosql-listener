@@ -9,22 +9,25 @@ $ git clone https://github.com/FerretDB/example.git
 
 $ cd example
 
-$ docker-compose pull
+$ docker compose pull
 
-$ docker-compose up
+$ docker compose up
 ```
 
 Note: if you are updating from the previous version, run:
 
 ```
-$ docker-compose down
+$ docker compose down
 
 $ docker system prune --volumes --force
+
+$ rm -fr data
 ```
 
 Then open [http://localhost:8888/](http://localhost:8888/) and use that example application.
 
-If you have a recent enough `mongosh`, you can use to connect to FerretDB. For example:
-[![asciicast](https://asciinema.org/a/BhBD85JpeLPHrSdyL1jzNFkFq.svg)](https://asciinema.org/a/BhBD85JpeLPHrSdyL1jzNFkFq)
+If you have `mongosh`, you can use it to connect to FerretDB. For example:
+[![asciicast](https://asciinema.org/a/577061.svg)](https://asciinema.org/a/577061)
+
 You can see data in PostgreSQL using `psql`. For example:
-[![asciicast](https://asciinema.org/a/RgCtFAxvkkp26YRBO6FPSpEUJ.svg)](https://asciinema.org/a/RgCtFAxvkkp26YRBO6FPSpEUJ)
+[![asciicast](https://asciinema.org/a/577073.svg)](https://asciinema.org/a/577073)
